@@ -1,7 +1,7 @@
 # Header
 menu:
-  Home: /
-  Archives: /archives
+  主页: /
+  归档: /archives
   GitHub: https://github.com/Chion82
 rss: /atom.xml
 
