@@ -18,6 +18,7 @@ widgets:
 - tagcloud
 - archive
 - recent_posts
+- links
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:

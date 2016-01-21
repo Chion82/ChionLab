@@ -74,3 +74,10 @@ deploy:
 
 # Disqus
 disqus_shortname: chionlab
+
+# rss
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
