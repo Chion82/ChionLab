@@ -27,8 +27,8 @@ $ ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS=
 ```
 这将会把Python2.7安装在`/usr/local/bin/python2.7`
 
-将默认Python版本从改为2.7
-----------------------------------
+将默认Python版本从2.6改为2.7
+-------------------------
 首先将`/usr/bin/python`这个软链接指向刚刚安装的Python2.7
 ```shell
 # rm /usr/bin/python
@@ -59,6 +59,7 @@ $ wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 替换默认pip为pip2.7
 -----------------
 ```
+# vim /usr/bin/pip2.6 #第一行改为#!/usr/bin/python2.6
 $ which pip2.7  #应该返回/usr/local/bin/pip2.7
 # rm /usr/bin/pip
 # ln -s /usr/local/bin/pip2.7 /usr/bin/pip
