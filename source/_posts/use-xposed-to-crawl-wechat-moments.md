@@ -19,7 +19,7 @@ tags: [android, hack]
 
 1. 首先定位到微信APP package。我们知道这个是`com.tencent.mm`。
 2. 在`com.tencent.mm`中，我们找到一个`ui`包，有点意思。
-3. 展开`com.tencent.mm.ui`，发现多个未被混淆的类，其中发现`MMBaseActivity`直接继承自`Activity`，`MMFragmentActivity`继承自`ActionBarActivity`，`MMActivity`继承自`MMFragmentActivity`：
+3. 展开`com.tencent.mm.ui`，发现多个未被混淆的类，其中发现`MMBaseActivity`直接继承自`Activity`，`MMFragmentActivity`继承自`ActionBarActivity`，`MMActivity`继承自`MMFragmentActivity`，并且`MMActivity`是微信中大多数Activity的父类：
 ```java
 public class MMFragmentActivity
   extends ActionBarActivity
