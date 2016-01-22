@@ -15,7 +15,7 @@ tags: [android, hack]
 逆向微信apk
 ----------
 首先解包微信apk，用dex2jar反编译classes.dex，然后用JD-GUI查看jar源码。
-当然，能看到的源码都是经过高度混淆的。但是，继承自安卓重要组件（如Activity、View等）的类名无法被混淆，于是还是能从中看到点东西。
+当然，能看到的源码都是经过高度混淆的。但是，继承自安卓重要组件（如Activity、Service等）的类名无法被混淆，于是还是能从中看到点东西。
 
 1. 首先定位到微信APP package。我们知道这个是`com.tencent.mm`。
 2. 在`com.tencent.mm`中，我们找到一个`ui`包，有点意思。
