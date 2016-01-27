@@ -30,7 +30,7 @@ categories:
 
 对于这种小型的ddos防御，除了ban ip之外我没有想到更好的解决方法。于是，我用ipset+iptables将当天访问过短信API的IP全部ban了。
 ```
-# ipset add blacklist
+# ipset create blacklist hash:net
 # cat /var/log/nginx/access.log | grep '[SMS_API]' | awk '{print $1}' | while read line;do ipset add blacklist $line;done  #将访问过短信API的IP全部加入ipset的blacklist集合
 # iptables -I INPUT -m set --match-set blacklist src -j DROP
 ```
