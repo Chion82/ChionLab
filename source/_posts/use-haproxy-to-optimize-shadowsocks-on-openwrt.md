@@ -4,11 +4,11 @@ date: 2016-01-27 22:22:34
 tags: [openwrt, router]
 ---
 
-上篇[OpenWRT科学上问的问题及其优化](/2016/01/27/optimize-shadowsocks-on-openwrt/)中，提到使用haproxy对shadowsocks的远程TCP连接做负载均衡，本文将介绍其实现过程。
+上篇[OpenWRT科学上网的问题及其优化](/2016/01/27/optimize-shadowsocks-on-openwrt/)中，提到使用haproxy对shadowsocks的远程TCP连接做负载均衡，本文将介绍其实现过程。
 
 交叉编译haproxy
 --------------
-虽然haproxy有预编译版本的ipk包，但是作者的小米路由mini所使用的Pandorabox的内核版本与该包要求的版本不一致，于是作者选择交叉编译。因为haproxy的源码简单，外部依赖少，编译过程比较简单，甚至不需要OpenWRT的完整SDK，只需要toolchain即可。
+虽然haproxy有预编译版本的ipk包，但是作者的小米路由mini所使用的Pandorabox的内核版本与该包依赖的内核版本不一致，于是作者选择交叉编译。因为haproxy的源码简单，外部依赖少，编译过程比较简单，甚至不需要OpenWRT的完整SDK，只需要toolchain即可。
 
 1. 获取haproxy源码
   ```
