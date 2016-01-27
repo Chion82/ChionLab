@@ -1,7 +1,11 @@
 ---
 title: 运维纪录：遭遇小型DDOS攻击，防御与查水表
 date: 2016-01-27 03:28:34
-tags: [ maintenance, linux ]
+tags:
+- maintenance
+- linux
+categories:
+- 运维
 ---
 
 博主之前完成了一个外包项目，最近两个月在负责这个项目的运维。这是一个web，主营不良资产催收O2O。由于可能存在竞争对手，有人试图攻击服务器。

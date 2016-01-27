@@ -1,7 +1,12 @@
 ---
 title: OpenWRT路由器上的ShadowSocks+ChinaDNS搭梯子方案
 date: 2016-01-23 16:07:53
-tags: [openwrt, router]
+tags:
+- openwrt
+- router
+categories:
+- 干货
+- OpenWRT
 ---
 
 在路由器上运行ShadowSocks科学上网是最为优雅的方案。本文将介绍其安装和配置步骤。

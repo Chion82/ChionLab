@@ -1,7 +1,12 @@
 ---
 title: PixivHack：记P站爬图脚本开发
 date: 2016-01-20 01:28:14
-tags: [python, crawler]
+tags:
+- python
+- crawler
+categories:
+- 开发笔记
+- Python
 ---
 
 由于7月学校考试，预习功课有点忙，最近又忙着做外包，一直都忘了维护博客，所以现在补上上个月本来应该写的技术博文。

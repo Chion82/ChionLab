@@ -1,7 +1,10 @@
 ---
 title: 在GitHub Pages上使用CloudFlare https CDN
 date: 2016-01-28 00:49:18
-tags: [maintenance]
+tags:
+- maintenance
+categories:
+- 运维
 ---
 
 本站就是使用[hexo](https://hexo.io)搭建的静态Web站点，托管在[GitHub repo](https://github.com/Chion82/Chion82.github.io)，并使用GitHub Pages。

@@ -1,7 +1,12 @@
 ---
 title: OpenWRT自动科学上网的问题及优化
 date: 2016-01-27 01:45:48
-tags: [openwrt, router]
+tags:
+- openwrt
+- router
+categories:
+- 干货
+- OpenWRT
 ---
 
 在[OpenWRT路由器配置ShadowSocks+ChinaDNS](/2016/01/23/openwrt-bypass-gfw-solution/)虽然使用起来十分优雅和方便，但是因为ISP质量问题，可能随之会带来很多稳定性问题，包括但不限以下作者遇到过的问题：

@@ -1,7 +1,13 @@
 ---
 title: ThunderHack开发笔记
 date: 2016-01-20 20:32:38
-tags: [python, crawler, hack]
+tags:
+- python
+- crawler
+- hack
+categories:
+- 开发笔记
+- Python
 ---
 
 关于ThunderHack

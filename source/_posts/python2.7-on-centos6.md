@@ -1,7 +1,12 @@
 ---
 title: 在CentOS6上编译安装Python2.7
 date: 2016-01-22 02:11:53
-tags: [linux]
+tags:
+- linux
+- maintenance
+categories:
+- 干货
+- linux
 ---
 
 参考了友站的博文[CentOS6上的Python2.7问题](https://www.starduster.me/2016/01/04/py27-on-centos6/)，正如所言，在CentOS6上安装Python2.7是非常头疼的问题。友站的这篇博文阐述了如何了从源安装Python2.7，本站则讲述从源码编译安装要注意的问题。

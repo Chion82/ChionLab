@@ -1,7 +1,11 @@
 ---
 title: Using Gulp to Simplify Front end Development Workflow
 date: 2016-01-20 01:20:18
-tags: [frontend]
+tags:
+- front-end
+categories:
+- 干货
+- 前端
 ---
 
 # What is Gulp

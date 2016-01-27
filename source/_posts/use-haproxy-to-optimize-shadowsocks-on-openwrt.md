@@ -1,7 +1,12 @@
 ---
 title: OpenWRT上使用haproxy对shadowsocks做负载均衡
 date: 2016-01-27 22:22:34
-tags: [openwrt, router]
+tags:
+- openwrt
+- router
+categories:
+- 干货
+- OpenWRT
 ---
 
 上篇[OpenWRT科学上网的问题及其优化](/2016/01/27/optimize-shadowsocks-on-openwrt/)中，提到使用haproxy对shadowsocks的远程TCP连接做负载均衡，本文将介绍其实现过程。

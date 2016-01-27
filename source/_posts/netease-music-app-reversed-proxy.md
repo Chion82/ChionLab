@@ -1,7 +1,12 @@
 ---
 title: 网易云音乐APP反代开发笔记
 date: 2016-01-21 21:27:50
-tags: [python, hack]
+tags:
+- python
+- hack
+categories:
+- 开发笔记
+- Python
 ---
 
 前几个月网易云音乐下架了一批版权音乐，网页端和手机客户端都无法播放。后来博主通过逆向网页端的JavaScript，写了一个[Chrome插件](https://github.com/Chion82/163_music_cracker)替换页面JS，使得可以播放下架和收费音乐，但最近网易已修复，插件已失效。（不排除是因为网易更新前端代码时重新构建混淆了JS导致我写的patch失效）。本笔记主要记录移动客户端的反向代理破解方案。
