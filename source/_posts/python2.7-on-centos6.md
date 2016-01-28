@@ -5,7 +5,7 @@ tags:
 - linux
 - maintenance
 categories:
-- 干货
+- 学习笔记
 - linux
 ---
 

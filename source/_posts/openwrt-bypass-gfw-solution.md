@@ -5,7 +5,7 @@ tags:
 - openwrt
 - router
 categories:
-- 干货
+- 学习笔记
 - OpenWRT
 ---
 

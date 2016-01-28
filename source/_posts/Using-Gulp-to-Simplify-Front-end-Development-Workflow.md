@@ -4,7 +4,7 @@ date: 2016-01-20 01:20:18
 tags:
 - front-end
 categories:
-- 干货
+- 学习笔记
 - 前端
 ---
 
