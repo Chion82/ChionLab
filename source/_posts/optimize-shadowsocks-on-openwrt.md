@@ -33,6 +33,7 @@ categories:
   ``` shell
   # iptables -t nat -A PREROUTING -p tcp --dport [PORT] -j DNAT --to-destination X.X.X.X:X
   # iptables -t nat -A PREROUTING -p ucp --dport [PORT] -j DNAT --to-destination X.X.X.X:X
+  # iptables -t nat -A POSTROUTING -j MASQUERADE
   # service iptables save #永久保存修改
   ```
   其中，`X.X.X.X:X`为ss服务器IP和端口，`[PORT]`为跳板服务器上用于中转的监听端口（为了方便，可以和ss服务器的端口相同）。
