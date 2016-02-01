@@ -16,16 +16,36 @@ categories:
 ```
 $ brew brew pcre
 $ brew install gd #image filter依赖gd
+$ brew link --force openssl #避免编译openssl时报错
 ```
 
 编译
 ---
+下面的示例中，添加以下几个模块：
+* http_image_filter_module
+* http_ssl_module
+* http_gzip_static_module
+* http_sub_module
+并且其他配置和homebrew的nginx大致相同（带版本号的路径除外）
 ```
-#进入nginx源码目录
-$ ./configure --with-http_image_filter_module --with-http_ssl_module --with-cc-opt="-I /usr/local/include" --with-ld-opt="-L /usr/local/lib" --sbin-path=/usr/local/Cellar/nginx/nginx --conf-path=/usr/local/etc/nginx/nginx.conf --pid-path=/usr/local/var/run/nginx.pid --http-log-path=/usr/local/var/log/nginx/access.log --error-log-path=/usr/local/var/log/nginx/error.log
+#cd到nginx源码目录
+$ ./configure --with-http_image_filter_module --with-http_ssl_module --with-http_gzip_static_module --with-http_sub_module \
+--prefix=/usr/local/Cellar/nginx/1.9.10 \
+--with-cc-opt="-I /usr/local/include" --with-ld-opt="-L /usr/local/lib" \
+--sbin-path=/usr/local/Cellar/nginx/1.9.10/bin/nginx \
+--conf-path=/usr/local/etc/nginx/nginx.conf \
+--pid-path=/usr/local/var/run/nginx.pid \
+--http-log-path=/usr/local/var/log/nginx/access.log \
+--error-log-path=/usr/local/var/log/nginx/error.log --with-pcre --with-ipv6 \
+--lock-path=/usr/local/var/run/nginx.lock \
+--http-client-body-temp-path=/usr/local/var/run/nginx/client_body_temp \
+--http-proxy-temp-path=/usr/local/var/run/nginx/proxy_temp \
+--http-fastcgi-temp-path=/usr/local/var/run/nginx/fastcgi_temp \
+--http-uwsgi-temp-path=/usr/local/var/run/nginx/uwsgi_temp \
+--http-scgi-temp-path=/usr/local/var/run/nginx/scgi_temp
 $ make
 ```
-其中，`--with-http_image_filter_module`选项加入`ngx_http_image_filter_module`模块（如果不需要该模块可去除该选项），`--with-cc-opt="-I /usr/local/include" --with-ld-opt="-L /usr/local/lib"`可避免报`Undefined symbols for architecture x86_64`错误。
+其中，`--with-cc-opt="-I /usr/local/include" --with-ld-opt="-L /usr/local/lib"`可避免报`Undefined symbols for architecture x86_64`错误。`/usr/local/Cellar/nginx/1.9.10`这里的`1.9.10`替换为将要编译的nginx版本号。
 
 安装
 ---
@@ -37,7 +57,7 @@ $ make install
 ```
 #备份原来的binary
 $ cp /usr/local/opt/nginx/bin/nginx /usr/local/opt/nginx/bin/nginx.bak
-#进入nginx源码目录
+#先cd到nginx源码目录
 $ sudo cp objs/nginx /usr/local/opt/nginx/bin/nginx
 $ rm /usr/local/bin/nginx
 $ ln -s /usr/local/opt/nginx/bin/nginx /usr/local/bin/nginx
