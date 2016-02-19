@@ -10,11 +10,12 @@ categories:
 - OSX
 ---
 在OSX上，一般情况下，使用`brew`安装nginx，再链接一个plist到`/Library/LaunchDaemons`即可。但是有时候brew中的nginx缺少某些模块，比如上文提到的`ngx_http_image_filter_module`，这时就需要重新编译nginx。
+更正：homebrew中提供`nginx-full`包，包含了常用的绝大多数模块。当然如果需要添加第三方模块还是需要手动编译。
 
 安装依赖
 ------
 ```
-$ brew brew pcre
+$ brew install pcre
 $ brew install gd #image filter依赖gd
 $ brew link --force openssl #避免编译openssl时报错
 ```
