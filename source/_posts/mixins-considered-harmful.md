@@ -1,5 +1,5 @@
 ---
-title: 自译：不要再用mixins了（Mixins Considered Harmful）［上篇］
+title: mixins是有害的（Mixins Considered Harmful）［上篇］
 date: 2016-07-23 20:12:22
 tags:
 - front-end
