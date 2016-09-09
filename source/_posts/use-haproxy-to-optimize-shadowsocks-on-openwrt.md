@@ -15,6 +15,9 @@ categories:
 --------------
 虽然haproxy有预编译版本的ipk包，但是作者的小米路由mini所使用的Pandorabox的内核版本与该包依赖的内核版本不一致，于是作者选择交叉编译。因为haproxy的源码简单，外部依赖少，编译过程比较简单，甚至不需要OpenWRT的完整SDK，只需要toolchain即可。
 
+博主这里提供一个在MT7620平台编译好的binary:
+[MT7620](/downloads/haproxy)
+
 1. 获取haproxy源码
   ```
   $ git clone https://github.com/haproxy/haproxy.git
