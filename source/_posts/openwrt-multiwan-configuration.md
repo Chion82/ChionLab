@@ -28,20 +28,20 @@ VLAN配置
 默认情况下，已经分配的VLAN应该有1个或者2个。
 通过插拔网线的方法，将配置页上的端口和路由器的物理RJ45接口对应上来。
 在小米路由器mini上，默认分配如下两个vlan：
-![](images/openwrt-switch-1.png)
+![](/images/openwrt-switch-1.png)
 其中，VLAN1用作LAN，连接了除端口4以外的所有物理端口；VLAN2是默认的WAN，只连接端口4。（此处端口4即为小米路由器mini上的蓝色WAN RJ45物理端口）
 注意，端口状态“不关联”(untagged)，即该端口作为本VLAN成员，进行二层交换；若选择“关联”(tagged)，端口之间通信无二层交换，而是冲突广播（hub方式）。
 
 选择一个端口作为第二个WAN口的端口，在现有的VLAN配置中将其设置为“关”，然后新建一个VLAN，将该端口设置为“不关联”，其他端口设置为“关”，CPU设置为“关联”。注意，小米路由器mini有一个特殊的端口7，按照原有的两个VLAN，将其设置为“关联”即可。
 如图，博主选择端口1来作为第二个WAN端口，在VLAN1中将其设置为“关”，并在新建的VLAN3中设置其为“不关联”。
-![](images/openwrt-switch-2.png)
+![](/images/openwrt-switch-2.png)
 保存即可。
 
 新建WAN接口
 ----------
 进入 网络->接口，将当前`WAN`接口更名为`WAN1`，并添加一个新接口，命名为`WAN2`。
 在`WAN2`的配置中，设置第二条宽带的拨号方式，在“物理设置”中选择刚才添加的VLAN3（`eth0.3`）。
-![](images/openwrt-interface-1.png)
+![](/images/openwrt-interface-1.png)
 
 **重要**
 进入`WAN1`的编辑页，在“高级设置”中，勾选“使用默认网关”，填写“使用网关跃点”为40；
@@ -50,7 +50,7 @@ VLAN配置
 若有更多的WAN需要添加，方法类似，需要注意每个WAN接口的网关跃点必须不一样。
 
 设置完成后，在接口总览中应该能看到两个WAN都成功获取到IP，如果是PPPoE方式，应该都已经拨号成功。
-![](images/openwrt-interface-2.png)
+![](/images/openwrt-interface-2.png)
 
 MWAN3配置
 --------
@@ -64,7 +64,7 @@ MWAN3配置
 添加两个接口，分别为`WAN1`，`WAN2`。
 在接口详情的“跟踪的IP地址”中，可添加几个国内的主机IP作为检测接口是否上线的ping地址。当ping该IP多次超时后，即该接口视作下线。
 博主的固件版本下，这个跟踪功能并不好使，经常误判断接口下线，因此我清空了跟踪的IP地址，并视作接口始终上线。
-![](images/openwrt-mwan-1.png)
+![](/images/openwrt-mwan-1.png)
 
 * 成员配置
 进入 配置->成员，删除所有已有的默认成员，添加两个成员，分别命名为`wan_1`, `wan_2`。
