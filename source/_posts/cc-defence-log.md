@@ -19,7 +19,7 @@ categories:
 到达亲戚家后，经过简短的问候，我即问道有没有能用的电脑。朋友让我使用一台08年的笔记本，运行的XP系统，只有IE8和360安全浏览器，但是已经够用了。下载Putty后ssh连接上服务器，立即`killall supervisord && supervisord`。因为node midway和Python后端都处于开发中状态，为了调试方便，所以直接是用supervisor作为daemon的。结果是，网站首页仍然返回504。
 
 下意识地`tail /var/log/nginx/access.log -n 100`，出来的结果让我目瞪口呆.jpg
-{% asset_img CC_access_log_1.jpg nginx access log:图中/api开头的URL全是短信API %}
+{% asset_img cc_access_log_1.jpg nginx access log:图中/api开头的URL全是短信API %}
 我立即就知道是怎么一回事了：黑客在flood发送短信的API。由于当时开发急促，没有对短信API加入图形验证码或者reCaptcha之类的验证，使得可以通过软件实现模拟请求，并且由于项目处于开发中，为方便调试没有使用wsgi容器调度请求和超时处理，再者，由于发送短信需要服务器向第三方短信平台请求，这个请求将比较费时，同时的大量请求使得Python后端完全被阻塞，难怪nginx报504。从log上看，flood来源自多个不同的IP，这是分布式的攻击，算得上是一场小型的CC攻击。后来发现参与这次CC的肉鸡大概有700～800台。
 
 **出于保密原则，本文以下内容中，发送短信API的URI均由[SMS_API]代替**
