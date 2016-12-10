@@ -6,6 +6,14 @@ menu:
   About Me: /about.html
 rss: /atom.xml
 
+themes:
+  uzume:
+    img: /images/theme_uzume.png
+    css: /css/style.css
+  miria:
+    img: /images/theme_miria.png
+    css: /stylesheets/theme_miria.css
+
 # Content
 excerpt_link: Read More
 fancybox: true

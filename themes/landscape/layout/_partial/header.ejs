@@ -17,6 +17,94 @@
         <% for (var i in theme.menu){ %>
           <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
         <% } %>
+
+        <% if (theme.themes) { %>
+          <div style="clear: both;"></div>
+          <style>
+            .switch-theme-btn {
+              opacity: 0.8 !important;
+            }
+
+            .switch-theme-btn:hover {
+              opacity: 1.0 !important;
+            }
+          </style>
+          <div>
+            <% for (var themeName in theme.themes){ %>
+              <a class="main-nav-link switch-theme-btn"
+                title="<%= themeName %>" href="#" style="float: left;margin-right: -10px;"
+                data-css-url="<%- url_for(theme.themes[themeName].css) %>"
+                data-theme-name="<%= themeName %>">
+                <div style="width:38px; height: 38px; overflow:hidden; border-radius:19px;">
+                  <img style="width: 100%; height: 100%;" src="<%- url_for(theme.themes[themeName].img) %>" />
+                </div>
+              </a>
+            <% } %>
+          </div>
+          <script>
+            (function(){
+
+              var JsCookies = {
+              	// this gets a cookie and returns the cookies value, if no cookies it returns blank ""
+              	get: function(c_name) {
+              		if (document.cookie.length > 0) {
+              			var c_start = document.cookie.indexOf(c_name + "=");
+              			if (c_start != -1) {
+              				c_start = c_start + c_name.length + 1;
+              				var c_end = document.cookie.indexOf(";", c_start);
+              				if (c_end == -1) {
+              					c_end = document.cookie.length;
+              				}
+              				return unescape(document.cookie.substring(c_start, c_end));
+              			}
+              		}
+              		return "";
+              	},
+
+              	// this sets a cookie with your given ("cookie name", "cookie value", "good for x days")
+              	set: function(c_name, value, expiredays) {
+              		var exdate = new Date();
+                  if (expiredays)
+              		  exdate.setDate(exdate.getDate() + expiredays);
+              		document.cookie = c_name + "=" + escape(value) + "; path=/" + ((expiredays == undefined) ? "" : "; expires=" + exdate.toUTCString());
+              	},
+
+              	// this checks to see if a cookie exists, then returns true or false
+              	check: function(c_name) {
+              		c_name = JsCookies.get(c_name);
+              		if (c_name != null && c_name != "") {
+              			return true;
+              		} else {
+              			return false;
+              		}
+              	}
+
+              };
+
+              function switchThemeCSS(themeName, cssUrl) {
+                document.querySelector('head').querySelectorAll('link[rel=stylesheet]')[1].href = cssUrl;
+              }
+
+              var switchThemeBtns = document.querySelectorAll('.switch-theme-btn');
+              for (var i=0; i<switchThemeBtns.length; i++) {
+                var switchThemeBtn = switchThemeBtns[i];
+                (function(switchThemeBtn) {
+                  switchThemeBtn.addEventListener('click', function(){
+                    switchThemeCSS(switchThemeBtn.dataset.themeName, switchThemeBtn.dataset.cssUrl);
+                    JsCookies.set('theme', switchThemeBtn.dataset.themeName);
+                  });
+                })(switchThemeBtn);
+              }
+
+              var initTheme = JsCookies.get('theme');
+              if (initTheme) {
+                var cssUrl = document.querySelector(".switch-theme-btn[data-theme-name='" + initTheme + "']").dataset.cssUrl;
+                switchThemeCSS(initTheme, cssUrl);
+              }
+
+            })();
+          </script>
+        <% } %>
       </nav>
       <nav id="sub-nav">
         <% if (theme.rss){ %>
