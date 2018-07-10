@@ -1,0 +1,38 @@
+<% if (config.disqus_shortname){ %>
+<script>
+  var disqus_shortname = '<%= config.disqus_shortname %>';
+  if (/*window.location.hostname.indexOf('cn2') === -1*/true) {
+    <% if (page.permalink){ %>
+    var disqus_url = '<%= page.permalink %>';
+    <% } %>
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    <% if (page.comments) { %>
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    <% } %>
+  } else {
+    var disqusElements = document.querySelectorAll('.disqus-comments-section, .disqus-comment-link');
+    for (var i=0; i<disqusElements.length; i++) {
+      disqusElements[i].style.display = 'none';
+    }
+  }
+</script>
+<% } %>
+
+<% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+  <%- js('fancybox/jquery.fancybox.pack') %>
+<% } %>
+
+<%- js('js/script') %>

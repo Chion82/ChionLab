@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = '归档';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = '分类: ' + page.category;
+  } else if (is_tag()){
+    title = '标签: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <%= config.title %> <% } else { %><%= config.index_title %><% } %> </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+    <link rel="apple-touch-icon" href="<%- theme.favicon %>">
+  <% } %>
+  <link href="/stylesheets/googlefonts.css" rel="stylesheet" type="text/css">
+  <%- css('css/style') %>
+  <style>
+    .article-duoshuo-link {
+      float: right;
+      margin-left: 20px;
+    }
+    .article-duoshuo-link:before {
+      content: "\f086";
+      font-family: "FontAwesome";
+      padding-right: 8px;
+    }
+    .jc-bs3-container {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+  <link href="/stylesheets/jquery-confirm.min.css" rel="stylesheet" type="text/css">
+  <script src="/scripts/jquery-2.2.0.min.js"></script>
+  <script src="/scripts/jquery-confirm.min.js"></script>
+  <!--
+  <% if (config.gentie_key){ %>
+    <script>
+      var yunModuleEnv = true;
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  <% } %>
+  -->
+
+  <% if (config.gitment_client_id){ %>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <% } %>
+
+  <%- partial('google-analytics') %>
+</head>

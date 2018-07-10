@@ -1,0 +1,181 @@
+<header id="header">
+  <script>
+    var JS_COOKIES_DOMAIN = '.chionlab.moe';
+    var JsCookies = {
+      // this gets a cookie and returns the cookies value, if no cookies it returns blank ""
+      get: function(c_name) {
+        if (document.cookie.length > 0) {
+          var c_start = document.cookie.indexOf(c_name + "=");
+          if (c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            var c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) {
+              c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start, c_end));
+          }
+        }
+        return "";
+      },
+
+      // this sets a cookie with your given ("cookie name", "cookie value", "good for x days")
+      set: function(c_name, value, expiredays) {
+        var exdate = new Date();
+        if (expiredays)
+          exdate.setDate(exdate.getDate() + expiredays);
+        document.cookie = c_name + "=" + escape(value) + "; path=/" + "; domain=" + JS_COOKIES_DOMAIN + ((expiredays == undefined) ? "" : "; expires=" + exdate.toUTCString());
+      },
+
+      // this checks to see if a cookie exists, then returns true or false
+      check: function(c_name) {
+        c_name = JsCookies.get(c_name);
+        if (c_name != null && c_name != "") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+    };
+  </script>
+
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="<%- url_for() %>" id="logo"><%= config.title %></a>
+      </h1>
+      <% if (theme.subtitle){ %>
+        <h2 id="subtitle-wrap">
+          <a href="<%- url_for() %>" id="subtitle"><%= theme.subtitle %></a>
+        </h2>
+      <% } %>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <% for (var i in theme.menu){ %>
+          <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+        <% } %>
+        <!-- <a class="main-nav-link nav-link-switch-cdn" href="//cn2.chionlab.moe" data-domain="cn2">CN2加速</a>
+        <a class="main-nav-link nav-link-switch-cdn" href="//blog.chionlab.moe" data-domain="blog">CF加速</a> -->
+
+        <% if (theme.themes) { %>
+          <div style="clear: both;"></div>
+          <style>
+            .switch-theme-btn {
+              opacity: 0.8 !important;
+            }
+
+            .switch-theme-btn:hover {
+              opacity: 1.0 !important;
+            }
+          </style>
+          <div>
+            <!--
+              <% for (var themeName in theme.themes){ %>
+                <a class="main-nav-link switch-theme-btn"
+                  title="<%= themeName %>" href="#" style="float: left;margin-right: -10px;"
+                  data-css-url="<%- url_for(theme.themes[themeName].css) %>"
+                  data-theme-name="<%= themeName %>">
+                  <div style="width:38px; height: 38px; overflow:hidden; border-radius:19px;">
+                    <img style="width: 100%; height: 100%;" src="<%- url_for(theme.themes[themeName].img) %>" />
+                  </div>
+                </a>
+              <% } %>
+            -->
+          </div>
+          <script>
+            // (function(){
+            //
+            //   function switchThemeCSS(themeName, cssUrl) {
+            //     document.querySelector('head').querySelectorAll('link[rel=stylesheet]')[1].href = cssUrl;
+            //   }
+            //
+            //   var switchThemeBtns = document.querySelectorAll('.switch-theme-btn');
+            //   for (var i=0; i<switchThemeBtns.length; i++) {
+            //     var switchThemeBtn = switchThemeBtns[i];
+            //     (function(switchThemeBtn) {
+            //       switchThemeBtn.addEventListener('click', function(){
+            //         switchThemeCSS(switchThemeBtn.dataset.themeName, switchThemeBtn.dataset.cssUrl);
+            //         JsCookies.set('theme', switchThemeBtn.dataset.themeName, 30);
+            //       });
+            //     })(switchThemeBtn);
+            //   }
+            //
+            //   var initTheme = JsCookies.get('theme');
+            //   if (initTheme) {
+            //     var cssUrl = document.querySelector(".switch-theme-btn[data-theme-name='" + initTheme + "']").dataset.cssUrl;
+            //     switchThemeCSS(initTheme, cssUrl);
+            //   }
+            //
+            // })();
+          </script>
+        <% } %>
+      </nav>
+      <nav id="sub-nav">
+        <% if (theme.rss){ %>
+          <a id="nav-rss-link" class="nav-icon" href="<%- theme.rss %>" title="RSS Feed"></a>
+        <% } %>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <%- search_form({button: '&#xF002;'}) %>
+      </div>
+    </div>
+  </div>
+  <script>
+    // function getGeolocation(geoInfo) {
+    //   var rootDomain = 'chionlab.moe';
+    //   if (geoInfo.country_code === 'CN') {
+    //     if (window.location.hostname === 'cn2' + '.' + rootDomain) {
+    //       JsCookies.set('domain', 'cn2', 30);
+    //       return;
+    //     }
+    //     $.confirm({
+    //       title: '线路优化建议',
+    //       content: '检测到您是境内用户，为了提高您的访问体验，是否切换到CN2线路？',
+    //       buttons: {
+    //         '好的': function() {
+    //           JsCookies.set('domain', 'cn2', 30);
+    //           window.location.href = '//' + 'cn2' + '.' + rootDomain + window.location.pathname;
+    //         },
+    //         '不用了': function() {
+    //           JsCookies.set('domain', 'blog', 30);
+    //         }
+    //       }
+    //     })
+    //   } else {
+    //     JsCookies.set('domain', 'blog', 30);
+    //     if ('blog' + '.' + rootDomain !== window.location.hostname && window.location.hostname.indexOf('localhost') === -1) {
+    //       window.location.href = '//' + 'blog' + '.' + rootDomain + window.location.pathname;
+    //     }
+    //   }
+    // }
+    // (function(){
+    //   var rootDomain = 'chionlab.moe';
+    //
+    //   if (!JsCookies.check('domain')) {
+    //     var geoLocationScript = document.createElement('script');
+    //     geoLocationScript.setAttribute('src','//freegeoip.net/json/?callback=getGeolocation');
+    //     document.head.appendChild(geoLocationScript);
+    //   } else {
+    //     if (JsCookies.get('domain') + '.' + rootDomain !== window.location.hostname && window.location.hostname.indexOf('localhost') === -1) {
+    //       window.location.href = '//' + JsCookies.get('domain') + '.' + rootDomain + window.location.pathname;
+    //     }
+    //   }
+    //
+    //   var switchBtns = document.querySelectorAll('.nav-link-switch-cdn');
+    //   for (var i=0; i<switchBtns.length; i++) {
+    //     (function(switchBtn){
+    //       if (switchBtn.dataset.domain === JsCookies.get('domain')) {
+    //         switchBtn.style.display = 'none';
+    //       }
+    //       switchBtn.addEventListener('click', function(ev) {
+    //         JsCookies.set('domain', switchBtn.dataset.domain);
+    //       });
+    //     })(switchBtns[i]);
+    //   }
+    // })();
+  </script>
+</header>
